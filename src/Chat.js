@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AddMessage from './AddMessage';
+import MessagesList from './MessagesList';
 
 class Chat extends Component {
 
@@ -20,18 +21,9 @@ class Chat extends Component {
         <h2>Super Awesome Chat</h2>
         <div className="name sender">{username}</div>
 
-        <ul className="message-list">
-          {messages.map((message, index) => (
-            <li
-              key={index}
-              className={
-                message.username === username ? 'message sender' : 'message recipient'
-              }
-            >
-              <p>{`${message.username}: ${message.text}`}</p>
-            </li>
-          ))}
-        </ul>
+        <MessagesList
+          messages={messages}
+          username={username} />
 
         <div>
           <AddMessage
