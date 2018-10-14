@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddMessage from './AddMessage';
+import Chat from './Chat';
 import logo from './logo.svg';
 import './App.css';
 
@@ -38,52 +38,15 @@ class App extends Component {
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
         <div className="container">
-          <div className="chat-window">
-            <h2>Super Awesome Chat</h2>
-            <div className="name sender">{users[0].username}</div>
-
-            <ul className="message-list">
-              {this.state.messages.map((message, index) => (
-                <li
-                  key={index}
-                  className={
-                    message.username === users[0].username ? 'message sender' : 'message recipient'
-                  }
-                >
-                  <p>{`${message.username}: ${message.text}`}</p>
-                </li>
-              ))}
-            </ul>
-
-            <div>
-              <AddMessage
-                updateMessages={this.updateMessages}
-                username={users[0].username} />
-            </div>
-          </div>
-
-          <div className="chat-window">
-            <h2>Super Awesome Chat</h2>
-            <div className="name sender">{users[1].username}</div>
-            <ul className="message-list">
-              {this.state.messages.map((message, index) => (
-                <li
-                  key={index}
-                  className={
-                    message.username === users[1].username ? 'message sender' : 'message recipient'
-                  }
-                >
-                  <p>{`${message.username}: ${message.text}`}</p>
-                </li>
-              ))}
-            </ul>
-
-            <div>
-              <AddMessage
-                updateMessages={this.updateMessages}
-                username={users[1].username} />
-            </div>
-          </div>
+          {
+            users.map((user, index) => (
+              <Chat
+                key={index}
+                username={user.username}
+                messages={this.state.messages}
+                updateMessages={this.updateMessages}/>
+            ))
+          }
         </div>
       </div>
     );
